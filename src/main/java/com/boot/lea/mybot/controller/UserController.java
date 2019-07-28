@@ -9,8 +9,11 @@ package com.boot.lea.mybot.controller;
  * @version v.3.0
  */
 
+import com.boot.lea.mybot.dto.UserBehaviorDataDTO;
+import com.boot.lea.mybot.futrue.MyFutureTask;
 import com.boot.lea.mybot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,10 +33,28 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping("/index")
+    @Autowired
+    private MyFutureTask myFutureTask;
+
+
+    @GetMapping("/index")
     @ResponseBody
     public String index() {
         return "启动用户模块成功~~~~~~~~";
     }
+
+    //http://localhost:8080/api/user/get/data?userId=4
+
+    @GetMapping("/get/data")
+    @ResponseBody
+    public UserBehaviorDataDTO getUserData(Long userId) {
+        System.out.println("UserController的线程:" + Thread.currentThread());
+        long begin = System.currentTimeMillis();
+        UserBehaviorDataDTO userAggregatedResult = myFutureTask.getUserAggregatedResult(userId);
+        long end = System.currentTimeMillis();
+        System.out.println("===============总耗时:" + (end - begin) /1000.0000+ "秒");
+        return userAggregatedResult;
+    }
+
 
 }
