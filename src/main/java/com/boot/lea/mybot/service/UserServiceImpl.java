@@ -5,6 +5,8 @@ import com.boot.lea.mybot.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -63,8 +65,8 @@ public class UserServiceImpl implements UserService {
     public long countRedBagCountByUserId(Long userId) {
         System.out.println("UserService获取RedBagCount的线程  " + Thread.currentThread().getName());
         try {
-            Thread.sleep(10000);
-            System.out.println("获取RedBagCount===睡眠:" + 10 + "s");
+            TimeUnit.SECONDS.sleep(4);
+            System.out.println("获取RedBagCount===睡眠:" + 4 + "s");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -75,8 +77,8 @@ public class UserServiceImpl implements UserService {
     public long countCouponCountByUserId(Long userId) {
         System.out.println("UserService获取CouponCount的线程  " + Thread.currentThread().getName());
         try {
-            Thread.sleep(10000);
-            System.out.println("获取CouponCount===睡眠:" + 10+ "s");
+            TimeUnit.SECONDS.sleep(8);
+            System.out.println("获取CouponCount===睡眠:" + 8+ "s");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

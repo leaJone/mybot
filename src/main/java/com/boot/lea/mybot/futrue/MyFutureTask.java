@@ -12,6 +12,7 @@ import java.util.concurrent.*;
 
 /**
  * @author Lijing
+ * @date 2019年7月29日
  */
 @Slf4j
 @Component
@@ -24,7 +25,7 @@ public class MyFutureTask {
     /**
      * 核心线程 5 最大线程 60 保活时间60s 存储队列 1024 有守护线程 拒绝策略:将超负荷任务回退到调用者
      */
-    private static ExecutorService executor = new ThreadPoolExecutor(1, 60,
+    private static ExecutorService executor = new ThreadPoolExecutor(8, 60,
             0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(1),
             new ThreadFactoryBuilder().setNameFormat("User_Async_FutureTask-%d").setDaemon(true).build(),
             new ThreadPoolExecutor.CallerRunsPolicy());
@@ -48,7 +49,14 @@ public class MyFutureTask {
 
         try {
 
-            Future<Long> fansCountFT = executor.submit(() -> userService.countFansCountByUserId(userId));
+            Future<Long> fansCountFT = executor.submit(new Callable<Long>() {
+                @Override
+                public Long call() throws Exception {
+                    return userService.countFansCountByUserId(userId);
+                }
+            });
+
+
             Future<Long> msgCountFT = executor.submit(() -> userService.countMsgCountByUserId(userId));
             Future<Long> collectCountFT = executor.submit(() -> userService.countCollectCountByUserId(userId));
             Future<Long> followCountFT = executor.submit(() -> userService.countFollowCountByUserId(userId));
