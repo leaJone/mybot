@@ -1,4 +1,4 @@
-package com.boot.lea.mybot.entity;
+package com.boot.lea.mybot.vo;
 
 
 import lombok.Data;
@@ -8,12 +8,12 @@ import java.util.Date;
 
 /**
  * @author LiJing
- * @ClassName: User
- * @Description: 用户基本实体对象
- * @date 2019/7/30 16:05
+ * @ClassName: UserVO
+ * @Description: 用户视图对象
+ * @date 2019/7/30 13:55
  */
 @Data
-public class User implements Serializable {
+public class UserVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

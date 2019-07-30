@@ -1,5 +1,8 @@
 package com.boot.lea.mybot.service;
 
+import com.boot.lea.mybot.dto.UserDTO;
+import com.boot.lea.mybot.vo.UserVO;
+
 public interface UserService {
 
 
@@ -50,4 +53,14 @@ public interface UserService {
      * @return 优惠卡券总数
      */
     long countCouponCountByUserId(Long userId);
+
+    /**
+     * 保存用户
+     *
+     * @param userVO
+     * @return
+     */
+    int save(UserVO userVO);
+
+    int save(UserDTO userDTO);
 }

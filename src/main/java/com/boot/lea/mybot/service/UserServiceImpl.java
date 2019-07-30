@@ -1,7 +1,9 @@
 package com.boot.lea.mybot.service;
 
 
+import com.boot.lea.mybot.dto.UserDTO;
 import com.boot.lea.mybot.mapper.UserMapper;
+import com.boot.lea.mybot.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
         System.out.println("UserService获取FollowCount的线程  " + Thread.currentThread().getName());
         try {
             Thread.sleep(10000);
-            System.out.println("获取FollowCount===睡眠:" + 10+ "s");
+            System.out.println("获取FollowCount===睡眠:" + 10 + "s");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -78,10 +80,22 @@ public class UserServiceImpl implements UserService {
         System.out.println("UserService获取CouponCount的线程  " + Thread.currentThread().getName());
         try {
             TimeUnit.SECONDS.sleep(8);
-            System.out.println("获取CouponCount===睡眠:" + 8+ "s");
+            System.out.println("获取CouponCount===睡眠:" + 8 + "s");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return 66;
+    }
+
+    @Override
+    public int save(UserVO userVO) {
+        System.out.println("userVO 保存用户成功:" + userVO);
+        return 1;
+    }
+
+    @Override
+    public int save(UserDTO userDTO) {
+        System.out.println("userDTO 保存用户成功:" + userDTO);
+        return 1;
     }
 }
