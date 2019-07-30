@@ -10,8 +10,8 @@ import java.util.Date;
 
 /**
  * @author LiJing
- * @ClassName: UserVO
- * @Description: 用户视图对象
+ * @ClassName: UserDTO
+ * @Description: 用户传输对象
  * @date 2019/7/30 13:55
  */
 @Data
@@ -30,7 +30,7 @@ public class UserDTO implements Serializable {
     private String username;
 
     /** 手机号*/
-    @NotBlank(message = "用户名不能为空")
+    @NotBlank(message = "手机号不能为空")
     @Pattern(regexp = "^[1][3,4,5,6,7,8,9][0-9]{9}$", message = "手机号格式有误")
     private String mobile;
 

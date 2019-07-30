@@ -66,7 +66,7 @@ public class UserController extends AbstractController {
     //  http://localhost:8080/api/user/save/serial
 
     /**
-     * 走串行校验
+     * 走串行校验的疼痛路线
      *
      * @param userVO
      * @return
@@ -87,14 +87,16 @@ public class UserController extends AbstractController {
             throw new BizException(Constant.PARAM_FAIL_CODE, "用户名不能为空");
         }
 
-        // 比如写一个map返回
+        // 比如写一个map返回 ~ 写法
         if (StringUtils.isBlank(userVO.getSex())) {
             Map<String, Object> result = new HashMap<>(5);
             result.put("code", Constant.PARAM_FAIL_CODE);
             result.put("msg", "性别异常");
             return result;
         }
-        //.........各种写法 ...
+
+        //.........各种写法 ... 还有业务代码..
+
         userService.save(userVO);
         return RspDTO.success();
     }
@@ -102,7 +104,7 @@ public class UserController extends AbstractController {
     //  http://localhost:8080/api/user/save/valid
 
     /**
-     * 走参数校验注解
+     * 走参数校验注解的性感路线
      *
      * @param userDTO
      * @return
