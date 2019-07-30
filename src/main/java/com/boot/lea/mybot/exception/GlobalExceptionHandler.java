@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 
 
@@ -62,6 +63,15 @@ public class GlobalExceptionHandler {
         return new RspDTO(VALIDATION_CODE, e.getCause().getMessage());
     }
 
+    /**
+     * ConstraintViolationException
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public RspDTO handleConstraintViolationException(ConstraintViolationException e) {
+        logger.error(e.getMessage(), e);
+        return new RspDTO(PARAM_FAIL_CODE, e.getMessage());
+    }
+
     @ExceptionHandler(NoHandlerFoundException.class)
     public RspDTO handlerNoFoundException(Exception e) {
         logger.error(e.getMessage(), e);
@@ -71,7 +81,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateKeyException.class)
     public RspDTO handleDuplicateKeyException(DuplicateKeyException e) {
         logger.error(e.getMessage(), e);
-        return new RspDTO(DUPLICATE_KEY_CODE, "路径不存在，请检查路径是否正确");
+        return new RspDTO(DUPLICATE_KEY_CODE, "数据重复,请检查后提交");
     }
 
 

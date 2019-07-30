@@ -1,23 +1,17 @@
 package com.boot.lea.mybot.constant;
 
-/**
- * @Title: Constant.java
- * @Package com.boot.lea.mybot.constant
- * @Description: TODO(用一句话描述该文件做什么)
- * @author LiJing
- * @date 2019/7/30 15:35
- * @version v.3.0
- */
 
 /**
+ * @author LiJing
  * @ClassName: Constant
  * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/7/30 15:35 
- *
+ * @date 2019/7/30 15:35
  */
 public class Constant {
 
-    public static int PARAM_FAIL_CODE = 1002;
+    private static int DUPLICATE_KEY_CODE = 1001; //主键重复
+    public static int PARAM_FAIL_CODE = 1002;     //参数异常
+    private static int VALIDATION_CODE = 1003;    //校验异常
+    public static int BAD_REQUEST = 1004;         //非法请求
 
 }
