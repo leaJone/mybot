@@ -28,13 +28,13 @@ import java.util.regex.Pattern;
 
 /**
  * @author LiJing
- * @ClassName: BaseController
- * @Description: TODO(这里用一句话描述这个类的作用)
+ * @ClassName: UserController
+ * @Description: 用户控制器
  * @date 2019/4/25 15:16
  */
 @RestController
 @RequestMapping("user/")
-public class UserController {
+public class UserController extends AbstractController {
 
 
     @Autowired
@@ -74,16 +74,19 @@ public class UserController {
     @PostMapping("/save/serial")
     public Object save(@RequestBody UserVO userVO) {
         String mobile = userVO.getMobile();
+
         //手动逐个 参数校验~ 写法
         if (StringUtils.isBlank(mobile)) {
             return RspDTO.paramFail("mobile:手机号码不能为空");
         } else if (!Pattern.matches("^[1][3,4,5,6,7,8,9][0-9]{9}$", mobile)) {
             return RspDTO.paramFail("mobile:手机号码格式不对");
         }
+
         //抛出自定义异常等~写法
         if (StringUtils.isBlank(userVO.getUsername())) {
             throw new BizException(Constant.PARAM_FAIL_CODE, "用户名不能为空");
         }
+
         // 比如写一个map返回
         if (StringUtils.isBlank(userVO.getSex())) {
             Map<String, Object> result = new HashMap<>(5);
