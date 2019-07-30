@@ -22,6 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
+
 /**
  * @author LiJing
  * @ClassName: BaseController
@@ -59,29 +63,40 @@ public class UserController {
     }
 
 
-    //  http://localhost:8080/api/user/save/userVO
+    //  http://localhost:8080/api/user/save/serial
 
-    /**走串行校验
+    /**
+     * 走串行校验
+     *
      * @param userVO
      * @return
      */
-    @PostMapping("/save/userVO")
-    public RspDTO save(@RequestBody UserVO userVO) {
+    @PostMapping("/save/serial")
+    public Object save(@RequestBody UserVO userVO) {
         String mobile = userVO.getMobile();
-        //参数校验为空返回参数信息
+        //手动逐个 参数校验~ 写法
         if (StringUtils.isBlank(mobile)) {
             return RspDTO.paramFail("mobile:手机号码不能为空");
+        } else if (!Pattern.matches("^[1][3,4,5,6,7,8,9][0-9]{9}$", mobile)) {
+            return RspDTO.paramFail("mobile:手机号码格式不对");
         }
-        //各自抛异常
+        //抛出自定义异常等~写法
         if (StringUtils.isBlank(userVO.getUsername())) {
             throw new BizException(Constant.PARAM_FAIL_CODE, "用户名不能为空");
         }
-        //.........
+        // 比如写一个map返回
+        if (StringUtils.isBlank(userVO.getSex())) {
+            Map<String, Object> result = new HashMap<>(5);
+            result.put("code", Constant.PARAM_FAIL_CODE);
+            result.put("msg", "性别异常");
+            return result;
+        }
+        //.........各种写法 ...
         userService.save(userVO);
         return RspDTO.success();
     }
 
-    //  http://localhost:8080/api/user/save/userDTO
+    //  http://localhost:8080/api/user/save/valid
 
     /**
      * 走参数校验注解
@@ -89,7 +104,7 @@ public class UserController {
      * @param userDTO
      * @return
      */
-    @PostMapping("/save/userDTO")
+    @PostMapping("/save/valid")
     public RspDTO save(@RequestBody @Validated UserDTO userDTO) {
         userService.save(userDTO);
         return RspDTO.success();
