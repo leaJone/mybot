@@ -18,9 +18,10 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 主键id 用户id
      */
-    private Long userId;
+    private Long id;
+
     /**
      * 用户名
      */
@@ -42,5 +43,9 @@ public class User implements Serializable {
      */
     private Date createTime;
 
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
 }

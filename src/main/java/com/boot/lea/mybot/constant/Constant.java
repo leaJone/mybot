@@ -13,5 +13,6 @@ public class Constant {
     public static int PARAM_FAIL_CODE = 1002;     //参数异常
     private static int VALIDATION_CODE = 1003;    //校验异常
     public static int BAD_REQUEST = 1004;         //非法请求
+    public static int NON_ABSENT = 1005;         //非法请求
 
 }

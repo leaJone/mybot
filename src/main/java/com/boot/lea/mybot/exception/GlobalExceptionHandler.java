@@ -23,7 +23,7 @@ import javax.validation.ValidationException;
 
 /**
  * @author LiJing
- * @ClassName: BizException
+ * @ClassName: GlobalExceptionHandler
  * @Description: 全局异常处理器
  * @date 2019/7/30 13:57
  */

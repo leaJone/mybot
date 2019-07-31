@@ -2,6 +2,7 @@ package com.boot.lea.mybot.service.impl;
 
 
 import com.boot.lea.mybot.dto.UserDTO;
+import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.mapper.UserMapper;
 import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.vo.UserVO;
@@ -15,6 +16,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
+
+    @Override
+    public User selectById(Long userId) {
+        return userMapper.selectById(userId);
+    }
 
     @Override
     public long countFansCountByUserId(Long userId) {

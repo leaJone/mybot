@@ -13,6 +13,7 @@ import com.boot.lea.mybot.constant.Constant;
 import com.boot.lea.mybot.dto.RspDTO;
 import com.boot.lea.mybot.dto.UserBehaviorDataDTO;
 import com.boot.lea.mybot.dto.UserDTO;
+import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.exception.BizException;
 import com.boot.lea.mybot.futrue.MyFutureTask;
 import com.boot.lea.mybot.service.UserService;
@@ -60,6 +61,15 @@ public class UserController extends AbstractController {
         long end = System.currentTimeMillis();
         System.out.println("===============总耗时:" + (end - begin) / 1000.0000 + "秒");
         return userAggregatedResult;
+    }
+
+    @GetMapping("/get")
+    public RspDTO getUser(Long userId) {
+        User user = userService.selectById(userId);
+        if (user == null) {
+            return new RspDTO<User>().nonAbsent("用户不存在");
+        }
+        return new RspDTO<User>().success(user);
     }
 
 

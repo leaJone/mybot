@@ -1,10 +1,18 @@
 package com.boot.lea.mybot.service;
 
 import com.boot.lea.mybot.dto.UserDTO;
+import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.vo.UserVO;
 
 public interface UserService {
 
+    /**
+     * 查询用户
+     *
+     * @param userId
+     * @return
+     */
+    User selectById(Long userId);
 
     /**
      * 获取粉丝数

@@ -9,6 +9,7 @@ package com.boot.lea.mybot.dto;
  * @version v.3.0
  */
 
+import com.boot.lea.mybot.constant.Constant;
 import lombok.Data;
 import org.apache.http.HttpStatus;
 
@@ -63,6 +64,10 @@ public class RspDTO<T> implements Serializable {
 
     public RspDTO<T> success(T data) {
         return new RspDTO<>(HttpStatus.SC_OK, "success", data);
+    }
+
+    public RspDTO nonAbsent(String msg) {
+        return new RspDTO<>(Constant.NON_ABSENT, msg);
     }
 
     @Override
