@@ -1,13 +1,5 @@
 package com.boot.lea.mybot.config;
 
-
-/**
- * @ClassName: DruidConfig
- * @Description: 德鲁伊 监控
- * @author LiJing
- * @date 2019/8/1 14:13
- */
-
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -21,6 +13,13 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * @ClassName: DruidConfig
+ * @Description: 德鲁伊 监控
+ * @author  LiJing
+ * @date 2019/8/1 14:13
+ */
 
 @Configuration
 public class DruidConfig {
@@ -50,7 +49,8 @@ public class DruidConfig {
         return bean;
     }
 
-    /**配置一个监控的 filter
+    /**
+     * 配置一个监控的 filter
      */
     @Bean
     public FilterRegistrationBean webStatFilter() {
