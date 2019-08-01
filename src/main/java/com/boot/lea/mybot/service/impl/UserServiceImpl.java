@@ -23,6 +23,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateById(UserDTO userDTO) {
+        User user = new User();
+        user.setId(userDTO.getUserId());
+        user.setSex(userDTO.getSex());
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+        return userMapper.updateById(user);
+    }
+
+
+
+
+    @Override
     public long countFansCountByUserId(Long userId) {
         try {
             Thread.sleep(10000);

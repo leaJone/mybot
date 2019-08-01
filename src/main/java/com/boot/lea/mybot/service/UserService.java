@@ -15,6 +15,14 @@ public interface UserService {
     User selectById(Long userId);
 
     /**
+     * 更新用户
+     *
+     * @param userDTO
+     * @return
+     */
+    int updateById(UserDTO userDTO);
+
+    /**
      * 获取粉丝数
      *
      * @param userId 用户id

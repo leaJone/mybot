@@ -21,4 +21,13 @@ public interface UserMapper {
      * @return
      */
     User selectById(Long userId);
+
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     * @return
+     */
+    int updateById(User user);
 }

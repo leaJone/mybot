@@ -15,8 +15,17 @@
 
 
     <select id="selectById" resultMap="BaseResultMap">
-        SELECT * FROM t_user tu WHERE tu.id = #{userId}
+        SELECT *
+        FROM t_user tu
+        WHERE tu.id = #{userId};
     </select>
 
+
+    <update id="updateById">
+        UPDATE t_user
+        SET sex=#{sex},
+            username=#{username}
+        WHERE id = #{id};
+    </update>
 
 </mapper>

@@ -13,6 +13,7 @@ import com.boot.lea.mybot.constant.Constant;
 import com.boot.lea.mybot.dto.RspDTO;
 import com.boot.lea.mybot.dto.UserBehaviorDataDTO;
 import com.boot.lea.mybot.dto.UserDTO;
+import com.boot.lea.mybot.dto.assist.Update;
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.exception.BizException;
 import com.boot.lea.mybot.futrue.MyFutureTask;
@@ -124,6 +125,19 @@ public class UserController extends AbstractController {
         userService.save(userDTO);
         return RspDTO.success();
     }
+
+    /**
+     * 走参数校验注解的 groups 组合校验
+     *
+     * @param userDTO
+     * @return
+     */
+    @PostMapping("/update/groups")
+    public RspDTO update(@RequestBody @Validated(Update.class) UserDTO userDTO) {
+        userService.updateById(userDTO);
+        return RspDTO.success();
+    }
+
 
 
 }
