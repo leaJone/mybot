@@ -8,6 +8,7 @@ import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public int updateById(UserDTO userDTO) {
         User user = new User();
         user.setId(userDTO.getUserId());
