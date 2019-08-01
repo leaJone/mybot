@@ -1,36 +1,11 @@
 package com.boot.lea.mybot.config;
 
-/**
- * @Title: DruidConfig.java
- * @Package com.boot.lea.mybot.config
- * @Description: TODO(用一句话描述该文件做什么)
- * @author LiJing
- * @date 2019/8/1 14:13
- * @version v.3.0
- * @ClassName: DruidConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/8/1 14:13
- * @ClassName: DruidConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/8/1 14:13
- * @ClassName: DruidConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/8/1 14:13
- * @ClassName: DruidConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/8/1 14:13
- */
 
 /**
  * @ClassName: DruidConfig
- * @Description: TODO(这里用一句话描述这个类的作用)
+ * @Description: 德鲁伊 监控
  * @author LiJing
- * @date 2019/8/1 14:13 
- *
+ * @date 2019/8/1 14:13
  */
 
 import com.alibaba.druid.pool.DruidDataSource;
