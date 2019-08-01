@@ -34,7 +34,7 @@ public class DeptController extends AbstractController {
         return rspDTO.success(department);
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Department saveDept(Department department) {
         departmentMapper.insertDept(department);
         return department;

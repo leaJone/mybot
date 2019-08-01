@@ -38,7 +38,8 @@ public interface DepartmentMapper {
      * @param department
      * @return
      */
-    @Insert("insert into t_department(departmentName) values(#{departmentName})")
+    @Options(useGeneratedKeys = true,keyProperty = "id")
+    @Insert("insert into t_department(department_name) values(#{departmentName})")
     int insertDept(Department department);
 
     /**
@@ -47,6 +48,6 @@ public interface DepartmentMapper {
      * @param department
      * @return
      */
-    @Update("update t_department set departmentName=#{departmentName} where id=#{id}")
+    @Update("update t_department set departmentName=#{department_name} where id=#{id}")
     int updateDept(Department department);
 }

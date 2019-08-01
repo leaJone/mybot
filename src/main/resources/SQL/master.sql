@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `t_department`;
 CREATE TABLE `department`
 (
     `id`             INT(11) NOT NULL AUTO_INCREMENT,
-    `departmentName` VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+    `department_name` VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
