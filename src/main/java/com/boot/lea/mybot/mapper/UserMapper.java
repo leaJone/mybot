@@ -30,4 +30,7 @@ public interface UserMapper {
      * @return
      */
     int updateById(User user);
+
+    int insert(User user);
+
 }

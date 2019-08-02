@@ -28,4 +28,13 @@
         WHERE id = #{id};
     </update>
 
+    <insert id="insert" parameterType="com.boot.lea.mybot.entity.User" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into t_user (username, sex, mobile)
+        values (#{username}, #{sex}, #{mobile})
+    </insert>
+
+
+
+
 </mapper>

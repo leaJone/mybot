@@ -121,7 +121,7 @@ public class UserController extends AbstractController {
      * @return
      */
     @PostMapping("/save/rest")
-    public RspDTO save(@NotBlank(message = "username不能为空") String username,@NotBlank(message = "sex不能为空") String sex) {
+    public RspDTO save(@NotBlank(message = "username不能为空") String username, @NotBlank(message = "sex不能为空") String sex) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(username);
         userDTO.setSex(sex);
@@ -152,8 +152,12 @@ public class UserController extends AbstractController {
      */
     @PostMapping("/update/groups")
     public RspDTO update(@RequestBody @Validated(Update.class) UserDTO userDTO) {
-        userService.updateById(userDTO);
-        return RspDTO.success();
+        int i = userService.updateById(userDTO);
+        System.out.println("影响行数:"+i);
+        if (i > 0) {
+            return RspDTO.success();
+        }
+        return RspDTO.failed();
     }
 
 

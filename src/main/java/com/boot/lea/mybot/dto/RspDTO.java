@@ -62,6 +62,10 @@ public class RspDTO<T> implements Serializable {
         return new RspDTO(HttpStatus.SC_OK, "success");
     }
 
+    public static RspDTO failed() {
+        return new RspDTO(HttpStatus.SC_INTERNAL_SERVER_ERROR, "failed");
+    }
+
     public RspDTO<T> success(T data) {
         return new RspDTO<>(HttpStatus.SC_OK, "success", data);
     }

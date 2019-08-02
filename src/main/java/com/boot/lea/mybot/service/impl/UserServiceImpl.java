@@ -5,7 +5,9 @@ import com.boot.lea.mybot.dto.UserDTO;
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.mapper.UserMapper;
 import com.boot.lea.mybot.service.UserService;
+import com.boot.lea.mybot.utils.BeanCopyUtils;
 import com.boot.lea.mybot.vo.UserVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -118,6 +120,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int save(UserDTO userDTO) {
         System.out.println("userDTO 保存用户成功:" + userDTO);
-        return 1;
+        User user = new User();
+        BeanCopyUtils.copy(userDTO,user);
+        int insert = userMapper.insert(user);
+        System.out.println("User 保存用户成功:" + user);
+        return insert;
     }
 }
