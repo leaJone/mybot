@@ -27,7 +27,7 @@ import javax.servlet.DispatcherType;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+//    @Bean
     public FilterRegistrationBean shiroFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new DelegatingFilterProxy("shiroFilter"));

@@ -8,17 +8,26 @@
 
 package com.boot.lea.mybot.exception;
 
+import com.boot.lea.mybot.constant.Constant;
 import com.boot.lea.mybot.dto.RspDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.validation.BindException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.StringJoiner;
 
 
 /**
@@ -45,14 +54,25 @@ public class GlobalExceptionHandler {
         return new RspDTO(e.getCode(), e.getMessage());
     }
 
+    @ExceptionHandler(BindException.class)
+    public RspDTO handleBindException(BindException e) {
+        logger.error(e.getMessage(), e);
+        return new RspDTO(PARAM_FAIL_CODE, e.getMessage());
+    }
+
+
     /**
      * 方法参数校验
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public RspDTO handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         logger.error(e.getMessage(), e);
-        return new RspDTO(PARAM_FAIL_CODE, e.getBindingResult().getFieldError().getDefaultMessage());
+        // 按需重新封装需要返回的错误信息 解析原错误信息，封装后返回，此处返回非法的字段名称error.getField()，原始值error.getRejectedValue()，错误信息
+        StringJoiner sj = new StringJoiner(";");
+        e.getBindingResult().getFieldErrors().forEach(x -> sj.add(x.getDefaultMessage()));
+        return new RspDTO(PARAM_FAIL_CODE, sj.toString());
     }
+
 
     /**
      * ValidationException
@@ -69,7 +89,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public RspDTO handleConstraintViolationException(ConstraintViolationException e) {
         logger.error(e.getMessage(), e);
-        return new RspDTO(PARAM_FAIL_CODE, e.getMessage());
+        StringJoiner sj = new StringJoiner(";");
+        e.getConstraintViolations().forEach(x -> sj.add(x.getMessageTemplate()));
+        return new RspDTO(PARAM_FAIL_CODE, sj.toString());
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
@@ -77,6 +99,13 @@ public class GlobalExceptionHandler {
         logger.error(e.getMessage(), e);
         return new RspDTO(404, "路径不存在，请检查路径是否正确");
     }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public RspDTO handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+        logger.error(e.getMessage(), e);
+        return new RspDTO(Constant.METHOD_NOT_SUPPORTED, "不支持'" + e.getMethod() + "'请求方法");
+    }
+
 
     @ExceptionHandler(DuplicateKeyException.class)
     public RspDTO handleDuplicateKeyException(DuplicateKeyException e) {

@@ -6,9 +6,7 @@ import com.boot.lea.mybot.dto.assist.Update;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.GroupSequence;
 import javax.validation.constraints.*;
-import javax.validation.groups.Default;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,7 +22,7 @@ public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /*** 用户ID*/
-    @NotNull(message = "用户id不能为空", groups = Update.class)
+    @NotNull(message = "{1}不能为空", groups = Update.class)
     private Long userId;
 
     /**

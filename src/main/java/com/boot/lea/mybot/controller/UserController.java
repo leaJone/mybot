@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -36,6 +37,7 @@ import java.util.regex.Pattern;
  */
 @RestController
 @RequestMapping("user/")
+//@Validated
 public class UserController extends AbstractController {
 
 
@@ -112,6 +114,22 @@ public class UserController extends AbstractController {
         return RspDTO.success();
     }
 
+    /**
+     * 走参数校验注解的性感路线
+     *
+     * @param username
+     * @return
+     */
+    @PostMapping("/save/rest")
+    public RspDTO save(@NotBlank(message = "username不能为空") String username,@NotBlank(message = "sex不能为空") String sex) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(username);
+        userDTO.setSex(sex);
+        userService.save(userDTO);
+        return RspDTO.success();
+    }
+
+
     //  http://localhost:8080/api/user/save/valid
 
     /**
@@ -137,7 +155,6 @@ public class UserController extends AbstractController {
         userService.updateById(userDTO);
         return RspDTO.success();
     }
-
 
 
 }
