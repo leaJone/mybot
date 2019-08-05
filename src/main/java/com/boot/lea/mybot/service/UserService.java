@@ -3,7 +3,6 @@ package com.boot.lea.mybot.service;
 import com.boot.lea.mybot.dto.UserDTO;
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.vo.UserVO;
-import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
 
@@ -92,12 +91,12 @@ public interface UserService {
 //     *
 //     * @param user
 //     * @return
-//     */
-//    boolean senMsg(User user);
+////     */
+//    void senMsg(User user);
 //
 //    /**发送邮件
 //     * @param user
 //     * @return
 //     */
-//    boolean senEmail(User user);
+//    void senEmail(User user);
 }

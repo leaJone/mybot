@@ -9,6 +9,7 @@ CREATE TABLE `t_user`
     `password`    varchar(55) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '密码',
     `mobile`      varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
     `sex`         varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '性别',
+    `email`       varchar(20) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '邮箱',
     `create_time` datetime                                   DEFAULT NULL,
     `update_time` datetime                                   DEFAULT NULL,
     PRIMARY KEY (`id`)
