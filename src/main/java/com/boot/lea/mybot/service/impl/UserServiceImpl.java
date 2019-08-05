@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
         BeanCopyUtils.copy(userDTO, user);
         int insert = userMapper.insert(user);
         System.out.println("User 保存用户成功:" + user);
-        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
+//        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
         this.senMsg(user);
         this.senEmail(user);
         return insert;
