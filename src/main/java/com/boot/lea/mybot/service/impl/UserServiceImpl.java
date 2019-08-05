@@ -8,10 +8,15 @@ import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.utils.BeanCopyUtils;
 import com.boot.lea.mybot.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -35,8 +40,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userDTO.getPassword());
         return userMapper.updateById(user);
     }
-
-
 
 
     @Override
@@ -118,12 +121,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     public int save(UserDTO userDTO) {
-        System.out.println("userDTO 保存用户成功:" + userDTO);
         User user = new User();
-        BeanCopyUtils.copy(userDTO,user);
+        BeanCopyUtils.copy(userDTO, user);
         int insert = userMapper.insert(user);
         System.out.println("User 保存用户成功:" + user);
+        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
+        this.senMsg(user);
+        this.senEmail(user);
         return insert;
     }
+
+
+    @Async
+    public boolean senMsg(User user) {
+        try {
+            TimeUnit.SECONDS.sleep(2);
+            System.out.println("发送短信中:.....");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
+        return true;
+    }
+
+    @Async
+    public boolean senEmail(User user) {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+            System.out.println("发送邮件中:.....");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",邮箱:" + user.getEmail() + "发送邮件成功");
+        return true;
+    }
+
+
 }

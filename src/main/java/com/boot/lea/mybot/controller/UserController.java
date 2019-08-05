@@ -20,10 +20,12 @@ import com.boot.lea.mybot.futrue.MyFutureTask;
 import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,10 +46,8 @@ public class UserController extends AbstractController {
     @Autowired
     private UserService userService;
 
-
     @Autowired
     private MyFutureTask myFutureTask;
-
 
     @GetMapping("/index")
     public String index() {

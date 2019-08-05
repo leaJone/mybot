@@ -30,6 +30,12 @@ public class User implements Serializable {
      * 手机号
      */
     private String mobile;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
     /**
      * 性别
      */
