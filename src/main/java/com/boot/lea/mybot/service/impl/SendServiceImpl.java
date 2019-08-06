@@ -5,6 +5,8 @@ import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.service.SendService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +16,7 @@ public class SendServiceImpl implements SendService {
 
     @Override
     @Async
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Boolean senMsg(User user) {
         try {
             TimeUnit.SECONDS.sleep(2);
@@ -28,6 +31,7 @@ public class SendServiceImpl implements SendService {
 
     @Async
     @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Boolean senEmail(User user) {
         try {
             TimeUnit.SECONDS.sleep(3);

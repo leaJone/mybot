@@ -1,8 +1,7 @@
 #端口和路径
 server:
   port: 8080
-  servlet:
-    context-path: /api/
+  servlet-path: /api
 
 
 #mybatis 数据源
@@ -12,41 +11,14 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/mybot?useUnicode=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
     username: root
     password: admin
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-
-    min-idle: 5
-    initial-size: 5
-    max-total: 5
-    max-wait-millis: 60000
-    validationQuery: SELECT 1 FROM DUAL
-    timeBetweenEvictionRunsMillis: 6000
-    minEvictableIdleTimeMillis: 300000
-    poolPreparedStatements: true
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-
-    #配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 20
-    useGlobalDataSourceStat: true
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-
-    #获取连接等待超时的时间
 
   #序列化时间
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   #    default-property-inclusion: non_absent
-
-  security:
-    user:
-      # 用户名
-      name: user
-      # 密码
-      password: 123456
 
 
 #mybatis 别名包和xml路径

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>1.5.19.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.boot.lea</groupId>
@@ -18,18 +18,18 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <!--ApiBoot 版本依赖-->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.minbox.framework</groupId>
-                <artifactId>api-boot-dependencies</artifactId>
-                <version>2.1.2.RELEASE</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<!--    &lt;!&ndash;ApiBoot 版本依赖&ndash;&gt;-->
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            <dependency>-->
+<!--                <groupId>org.minbox.framework</groupId>-->
+<!--                <artifactId>api-boot-dependencies</artifactId>-->
+<!--                <version>2.1.2.RELEASE</version>-->
+<!--                <scope>import</scope>-->
+<!--                <type>pom</type>-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
 
     <dependencies>
         <dependency>
@@ -80,16 +80,11 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>
-
-        <!--ApiBoot Swagger-->
-        <dependency>
-            <groupId>org.minbox.framework</groupId>
-            <artifactId>api-boot-starter-swagger</artifactId>
         </dependency>
 
         <dependency>
@@ -140,17 +135,13 @@
             <version>3.1</version>
         </dependency>
 
-        <!--AKKA-->
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-slf4j_2.11</artifactId>
-            <version>2.5.16</version>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-actor_2.11</artifactId>
-            <version>2.5.16</version>
-        </dependency>
+
 
     </dependencies>
 

@@ -44,10 +44,4 @@ public class CarDTO implements Serializable {
 
     private List<User> passengers;
 
-
-    public CarDTO(String manufacturer, String licensePlate, int seatCount) {
-        this.manufacturer = manufacturer;
-        this.licensePlate = licensePlate;
-        this.seatCount = seatCount;
-    }
 }

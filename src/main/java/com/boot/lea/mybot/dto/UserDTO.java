@@ -3,10 +3,10 @@ package com.boot.lea.mybot.dto;
 
 import com.boot.lea.mybot.dto.assist.Create;
 import com.boot.lea.mybot.dto.assist.Update;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
@@ -19,23 +19,22 @@ import java.util.Date;
  * @date 2019/7/30 13:55
  */
 @Data
-@ApiModel("用户DTO")
 public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /*** 用户ID*/
-    @ApiModelProperty(value = "用户ID", example = "88", required = true, dataType = "int")
+//    @ApiModelProperty(value = "用户ID", example = "88", required = true, dataType = "int")
     @NotNull(message = "{1}不能为空", groups = Update.class)
     private Long userId;
 
     /**
      * 用户名
      */
-    @ApiModelProperty(value = "用户名", example = "王麻子", required = true, dataType = "string")
-    @NotBlank(message = "用户名不能为空")
-    @Length(max = 20, message = "用户名不能超过20个字符", groups = {Create.class, Update.class})
-    @Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "用户昵称限制：最多20字符，包含文字、字母和数字")
+//    @ApiModelProperty(value = "用户名", example = "王麻子", required = true, dataType = "string")
+    @NotBlank(message = "${NotBlank.userDTO.username}")
+    @Length(max = 20, message = "用户名不能超过{max}个字符")
+//    @Pattern(regexp = "^[\\u4E00-\\u9FA5A-Za-z0-9\\*]*$", message = "用户昵称限制：最多20字符，包含文字、字母和数字")
     private String username;
 
     /**

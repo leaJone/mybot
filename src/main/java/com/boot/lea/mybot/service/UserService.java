@@ -93,10 +93,10 @@ public interface UserService {
 //     * @return
 ////     */
 //    void senMsg(User user);
-//
-//    /**发送邮件
-//     * @param user
-//     * @return
-//     */
-//    void senEmail(User user);
+
+    /**发送邮件
+     * @param user
+     * @return
+     */
+    void senEmail(User user);
 }
