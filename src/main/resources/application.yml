@@ -62,20 +62,6 @@ logging:
         lea:
           mybot: debug
 
-api:
-  boot:
-    swagger:
-      enable: true
-      title: mybot开发文档swagger
-      description: 开发文档
-      base-package: com.boot.lea.mybot
-      version: 2.1.2.RELEASE
-      license: mybot
-      license-url: http://localhost:8080/api/swagger-ui.html
-      contact:
-        name: Lijing
-        email: 769917191@qq.com
-
 #    security:
 #      away: jdbc
 #      # Spring Security 内存方式用户列表示例
