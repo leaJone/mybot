@@ -92,7 +92,7 @@ public interface UserService {
 //     * @param user
 //     * @return
 ////     */
-//    void senMsg(User user);
+    void senMsg(User user);
 
     /**发送邮件
      * @param user
