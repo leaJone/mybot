@@ -24,7 +24,6 @@ public class SendServiceImpl implements SendService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        int i = 1 / 0;
         System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
         return true;
     }

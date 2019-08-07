@@ -3,6 +3,9 @@ package com.boot.lea.mybot.service;
 import com.boot.lea.mybot.dto.UserDTO;
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.vo.UserVO;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
 
@@ -85,6 +88,10 @@ public interface UserService {
      * @return
      */
     int save(UserDTO userDTO);
+
+    @Async
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    void send(User user);
 
     /**
 //     * 发送短信

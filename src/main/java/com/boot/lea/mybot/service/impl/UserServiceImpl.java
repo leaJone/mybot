@@ -43,26 +43,37 @@ public class UserServiceImpl implements UserService {
         BeanCopyUtils.copy(userDTO, user);
         int insert = userMapper.insert(user);
         System.out.println("User 保存用户成功:" + user);
-        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
-        currentProxy.senMsg(user);
-//        currentProxy.senEmail(user);
-//        int i = 1 / 0;
+        sendService.senMsg(user);
+        sendService.senEmail(user);
         return insert;
     }
+
+    @Async  @Override  @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void send(User user) {
+        //发短信
+        user.setUsername(Thread.currentThread().getName()+"发短信测试事务...."+ new Random().nextInt());
+        userMapper.insert(user);
+        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
+        //发邮件
+        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
+        currentProxy.senEmail(user);
+    }
+
+
+
     @Async  @Override  @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void senMsg(User user) {
         user.setUsername(Thread.currentThread().getName()+"发短信测试事务...."+ new Random().nextInt());
-        int insert = userMapper.insert(user);
-//        int i = 1 / 0;
-        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
-        currentProxy.senEmail(user);
+        userMapper.insert(user);
+        int i=1/0;
         System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
     }
+
+
     @Async @Override @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void senEmail(User user) {
         user.setUsername("发邮件测试事务...."+ new Random().nextInt());
-//        int insert = userMapper.insert(user);
-
+         userMapper.insert(user);
         System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",邮箱:" + user.getEmail() + "发送邮件成功");
     }
 
