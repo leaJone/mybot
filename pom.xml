@@ -152,6 +152,18 @@
             <version>2.5.16</version>
         </dependency>
 
+        <!--切面jar-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.10</version>
+        </dependency>
+
     </dependencies>
 
     <build>
