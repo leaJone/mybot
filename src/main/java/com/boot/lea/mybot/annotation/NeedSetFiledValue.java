@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * @ClassName: NeedSetFiledValue
- * @Description: 巧妙利用注解+aop实现关联查询
+ * @Description: 利用注解+aop实现关联查询
  * @author LiJing
  * @date 2019/8/9 15:32 
  *

@@ -1,24 +1,17 @@
 package com.boot.lea.mybot.entity;
 
-/**
- * @Title: Order.java
- * @Package com.boot.lea.mybot.entity
- * @Description: TODO(用一句话描述该文件做什么)
- * @author LiJing
- * @date 2019/8/9 15:33
- * @version v.3.0
- */
 
 import com.boot.lea.mybot.annotation.NeedSetValue;
 import com.boot.lea.mybot.mapper.UserMapper;
+import lombok.Data;
 
 /**
- * @ClassName: Order
- * @Description: TODO(这里用一句话描述这个类的作用)
  * @author LiJing
- * @date 2019/8/9 15:33 
- *
+ * @ClassName: Order
+ * @Description: 订单实体
+ * @date 2019/8/9 15:33
  */
+@Data
 public class Order {
 
     private Integer id;
@@ -27,8 +20,10 @@ public class Order {
 
     private Integer customerId;
 
-    // 使用注解定义在参数上
-    @NeedSetValue(beanClass = UserMapper.class, params = "customerId", method = "getUserById",targetFiled = "name")
+    /**
+     * 注解标记 AOP 查询和设置 @NeedSetValue
+     */
+    @NeedSetValue(beanClass = UserMapper.class, params = "customerId", method = "selectById", targetFiled = "username")
     private String customerName;
 
 }

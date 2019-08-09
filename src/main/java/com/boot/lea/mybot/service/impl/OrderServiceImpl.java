@@ -1,38 +1,43 @@
 package com.boot.lea.mybot.service.impl;
 
-/**
- * @Title: OrderServiceImpl.java
- * @Package com.boot.lea.mybot.service
- * @Description: TODO(用一句话描述该文件做什么)
- * @author LiJing
- * @date 2019/8/9 15:33
- * @version v.3.0
- */
-
 import com.boot.lea.mybot.annotation.NeedSetFiledValue;
 import com.boot.lea.mybot.entity.Order;
 import com.boot.lea.mybot.mapper.OrderMapper;
 import com.boot.lea.mybot.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @ClassName: OrderServiceImpl
- * @Description: TODO(这里用一句话描述这个类的作用)
  * @author LiJing
- * @date 2019/8/9 15:33 
- *
+ * @ClassName: OrderServiceImpl
+ * @Description: 订单Service服务类
+ * @date 2019/8/9 15:33
  */
+@Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    // 使用注解定在需要的方法上
     @Override
     @NeedSetFiledValue
     public List<Order> getAllOrder() {
-        List<Order> orderList = orderMapper.getAllOrder();
+//        List<Order> orderList = orderMapper.getAllOrder();
+        List<Order> orderList = new ArrayList<>();
+        Order order1 = new Order();
+        order1.setId(8888);
+        order1.setName("订单:" + order1.getId());
+        order1.setCustomerId(206);
+        orderList.add(order1);
+
+        Order order2 = new Order();
+        order2.setId(9999);
+        order2.setName("订单:" + order2.getId());
+        order2.setCustomerId(204);
+        orderList.add(order2);
+
         return orderList;
     }
 }

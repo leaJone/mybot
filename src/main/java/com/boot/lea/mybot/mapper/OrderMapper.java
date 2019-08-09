@@ -23,5 +23,9 @@ import java.util.List;
  */
 @Mapper
 public interface OrderMapper {
+
+    /** 查询订单
+     * @return
+     */
     List<Order> getAllOrder();
 }

@@ -48,8 +48,11 @@ public class BeanUtil implements ApplicationContextAware {
             Field paramField = clazz.getDeclaredField(sv.params());
             paramField.setAccessible(true);
             Field targetField = null;
+
             boolean needInnerField = !StringUtils.isEmpty(sv.targetFiled());
-            Map<String, Object> cache = new HashMap<>();
+            //可以提到方法外结合 缓存快速设置 这里只是简单的举例  可接入redis guava等缓存
+            Map<String, Object> cache = new HashMap<>(10);
+
             String keyPrefix = sv.beanClass() + "-" + sv.method() + "-" + sv.targetFiled();
             for (Object obj : col) {
                 Object paramValue = paramField.get(obj);
@@ -63,15 +66,12 @@ public class BeanUtil implements ApplicationContextAware {
                     value = cache.get(key);
                 } else {
                     value = method.invoke(bean, paramValue);
-                    if (needInnerField) {
-                        if (value != null) {
-                            if (targetField == null) {
-                                targetField = value.getClass().getDeclaredField(sv.targetFiled());
-                                targetField.setAccessible(true);
-                            }
-                            value = targetField.get(value);
+                    if (needInnerField && value != null) {
+                        if (targetField == null) {
+                            targetField = value.getClass().getDeclaredField(sv.targetFiled());
+                            targetField.setAccessible(true);
                         }
-
+                        value = targetField.get(value);
                     }
                     cache.put(key, value);
                 }

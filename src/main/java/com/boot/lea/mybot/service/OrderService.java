@@ -15,14 +15,18 @@ import com.boot.lea.mybot.entity.Order;
 import java.util.List;
 
 /**
+ * @author LiJing
  * @ClassName: OrderService
  * @Description: TODO(这里用一句话描述这个类的作用)
- * @author LiJing
- * @date 2019/8/9 15:33 
- *
+ * @date 2019/8/9 15:33
  */
 public interface OrderService {
-    // 使用注解定在需要的方法上
-    @NeedSetFiledValue
+
+    /**
+     * 使用注解定在需要的方法上 @NeedSetFiledValue
+     * 获取订单列表
+     *
+     * @return
+     */
     List<Order> getAllOrder();
 }
