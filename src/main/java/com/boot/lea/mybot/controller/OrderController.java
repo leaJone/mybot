@@ -3,7 +3,6 @@ package com.boot.lea.mybot.controller;
 
 import com.boot.lea.mybot.dto.RspDTO;
 import com.boot.lea.mybot.entity.Order;
-import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

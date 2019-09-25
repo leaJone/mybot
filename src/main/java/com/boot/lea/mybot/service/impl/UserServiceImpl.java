@@ -12,6 +12,7 @@ import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.concurrent.TimeUnit;
@@ -25,45 +26,19 @@ public class UserServiceImpl implements UserService {
     @Autowired
     SendService sendService;
 
-
-    @Transactional
-    @Override
+    @Override@Transactional(propagation = Propagation.REQUIRED)
     public int save(UserDTO userDTO) {
         User user = new User();
         BeanCopyUtils.copy(userDTO, user);
         int insert = userMapper.insert(user);
         System.out.println("User 保存用户成功:" + user);
-//        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
+        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
         sendService.senMsg(user);
         sendService.senEmail(user);
+//        int i = 1 / 0;
         return insert;
     }
 
-
-    @Async
-    public void senMsg(User user) {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("发送短信中:.....");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
-//        return true;
-    }
-
-    @Async
-    public void senEmail(User user) {
-        try {
-            TimeUnit.SECONDS.sleep(3);
-            System.out.println("发送邮件中:.....");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",邮箱:" + user.getEmail() + "发送邮件成功");
-//        return true;
-    }
     @Override
     public User selectById(Long userId) {
         return userMapper.selectById(userId.intValue());

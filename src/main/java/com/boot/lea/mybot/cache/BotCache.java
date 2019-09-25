@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class BotCache {
 
+
+
     /*
      * 需要引用缓存就
      * 以 @Autowired Resource

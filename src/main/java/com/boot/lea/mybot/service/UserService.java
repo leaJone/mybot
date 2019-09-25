@@ -3,8 +3,12 @@ package com.boot.lea.mybot.service;
 import com.boot.lea.mybot.dto.UserDTO;
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.vo.UserVO;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
+
 
     /**
      * 查询用户
