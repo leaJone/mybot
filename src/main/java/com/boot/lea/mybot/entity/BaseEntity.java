@@ -9,13 +9,11 @@
 package com.boot.lea.mybot.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
