@@ -28,4 +28,14 @@ public interface OrderMapper {
      * @return
      */
     List<Order> getAllOrder();
+
+    /**
+     * @return
+     */
+    List<Order> selectFutureOverTimeOrder();
+
+    /**
+     * @param orderId
+     */
+    void updateCloseOverTimeOrder(Long orderId);
 }

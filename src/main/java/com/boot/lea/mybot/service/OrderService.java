@@ -28,4 +28,18 @@ public interface OrderService {
      * @return
      */
     List<Order> getAllOrder();
+
+    /**
+     * 查询超时订单(或者即将超时的)
+     *
+     * @return
+     */
+    List<Order> selectFutureOverTimeOrder();
+
+    /**
+     * 关闭超时订单
+     *
+     * @param dataId
+     */
+    void updateCloseOverTimeOrder(Long dataId);
 }
