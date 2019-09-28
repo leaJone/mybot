@@ -20,12 +20,11 @@ import com.boot.lea.mybot.futrue.MyFutureTask;
 import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.aop.framework.AopContext;
+import org.mybot.resubmit.annotation.Resubmit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +66,7 @@ public class UserController extends AbstractController {
     }
 
     @GetMapping("/get")
+    @Resubmit(delaySeconds = 5,msg = "请求用户信息频繁")
     public RspDTO getUser(Long userId) {
         User user = userService.selectById(userId);
         if (user == null) {
@@ -121,6 +121,7 @@ public class UserController extends AbstractController {
      * @return
      */
     @PostMapping("/save/rest")
+    @Resubmit(delaySeconds = 5,msg = "用户已经提交了,请勿重新提交")
     public RspDTO save(@NotBlank(message = "username不能为空") String username, @NotBlank(message = "sex不能为空") String sex) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(username);
@@ -139,6 +140,7 @@ public class UserController extends AbstractController {
      * @return
      */
     @PostMapping("/save/valid")
+    @Resubmit(delaySeconds = 5,msg = "用户已经提交了,请勿重新提交22")
     public RspDTO save(@RequestBody @Validated UserDTO userDTO) {
         userService.save(userDTO);
         return RspDTO.success();
@@ -153,7 +155,7 @@ public class UserController extends AbstractController {
     @PostMapping("/update/groups")
     public RspDTO update(@RequestBody @Validated(Update.class) UserDTO userDTO) {
         int i = userService.updateById(userDTO);
-        System.out.println("影响行数:"+i);
+        System.out.println("影响行数:" + i);
         if (i > 0) {
             return RspDTO.success();
         }

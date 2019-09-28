@@ -10,23 +10,19 @@ package com.boot.lea.mybot.exception;
 
 import com.boot.lea.mybot.constant.Constant;
 import com.boot.lea.mybot.dto.RspDTO;
+import org.mybot.resubmit.ex.ResubmitException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 import java.util.StringJoiner;
 
 
@@ -106,6 +102,12 @@ public class GlobalExceptionHandler {
         return new RspDTO(Constant.METHOD_NOT_SUPPORTED, "不支持'" + e.getMethod() + "'请求方法");
     }
 
+
+    @ExceptionHandler(ResubmitException.class)
+    public RspDTO handleResubmitException(ResubmitException e) {
+        logger.error(e.getMessage(), e);
+        return new RspDTO(Constant.RESUBMIT, e.getMessage());
+    }
 
     @ExceptionHandler(DuplicateKeyException.class)
     public RspDTO handleDuplicateKeyException(DuplicateKeyException e) {

@@ -9,11 +9,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mybot?useUnicode=true&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/mybot?useUnicode=utf8mb4&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+    connectionInitSqls: set names utf8mb4
 
     min-idle: 5
     initial-size: 5
