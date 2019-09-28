@@ -48,14 +48,12 @@ public class MyFutureTask {
 //        couponCount = userService.countCouponCountByUserId(userId);
 
         try {
-
             Future<Long> fansCountFT = executor.submit(new Callable<Long>() {
                 @Override
                 public Long call() throws Exception {
                     return userService.countFansCountByUserId(userId);
                 }
             });
-
 
             Future<Long> msgCountFT = executor.submit(() -> userService.countMsgCountByUserId(userId));
             Future<Long> collectCountFT = executor.submit(() -> userService.countCollectCountByUserId(userId));

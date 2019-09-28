@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.alasga.order.mapper.OwnOrderMapper">
+    <resultMap id="BaseResultMap" type="com.boot.lea.mybot.entity.Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="name" property="name"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="goods_id" property="goodsId"/>
+        <result column="goods_price" property="goodsPrice"/>
+        <result column="order_amount" property="orderAmount"/>
+        <result column="status" property="status"/>
+        <result column="pay_type" property="payType"/>
+        <result column="pay_status" property="payStatus"/>
+        <result column="pay_date" property="payDate"/>
+        <result column="over_date" property="overDate"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+
+    <sql id="baseField">
+        aoo.id,
+        aoo.order_no,
+        aoo.goods_id,
+        aoo.goods_cover,
+        aoo.goods_price,
+        aoo.order_amount,
+        aoo.status,
+        aoo.pay_type,
+        aoo.pay_status,
+        aoo.pay_date,
+        aoo.remark,
+        aoo.over_date,
+        aoo.create_date,
+        aoo.update_date
+    </sql>
+
+    <!--查询即将超时时间-->
+    <select id="selectFutureOverTimeOrder" resultMap="BaseResultMap">
+        select <include refid="baseField"/>
+        from alsj_own_order aoo
+        where aoo.status = 10
+    </select>
+
+    <!--更新超时订单 必须是正常且未支付订单-->
+    <update id="updateCloseOverTimeOrder">
+        update alsj_own_order aoo
+        set aoo.status=100
+        where aoo.id = #{orderId}
+          and aoo.status = 10
+    </update>
+
+    <!--用户主动 取消订单-->
+    <update id="updateCancelOwnOrder">
+        update alsj_own_order aoo
+        set aoo.status=#{status}
+        where aoo.id = #{id}
+          and aoo.user_id = #{userId}
+          and aoo.status = 10
+    </update>
+
+    <!--查询用户列表-->
+    <select id="listPageUserOwnOrder" resultMap="BaseResultMap">
+        select <include refid="baseField"/>
+        from alsj_own_order aoo
+        where aoo.user_id = #{userId}
+        ORDER BY aoo.status ASC, aoo.create_date DESC
+    </select>
+
+    <!--统计用户列表-->
+    <select id="countUserOwnOrder" resultType="long">
+        select count(*)
+        from alsj_own_order aoo
+        where aoo.user_id = #{userId}
+    </select>
+
+    <!--支付订单 修改状态 -->
+    <update id="updatePayOrder">
+        update alsj_own_order aoo
+        set aoo.status=#{status} ,
+            aoo.pay_status=#{payStatus},
+            aoo.pay_date=#{payDate}
+        where aoo.id = #{id}
+    </update>
+</mapper>
