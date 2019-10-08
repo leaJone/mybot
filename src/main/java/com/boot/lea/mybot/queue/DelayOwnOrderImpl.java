@@ -45,7 +45,7 @@ public class DelayOwnOrderImpl implements DelayOrder<Order> {
      * 初始化时加载数据库中需处理超时的订单
      * 系统启动:扫描数据库中未支付(要在更新时:加上已支付就不用更新了),未过期的的订单
      */
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         log.info("系统启动:扫描数据库中未支付,未过期的的订单");
         List<Order> orderList = orderService.selectFutureOverTimeOrder();

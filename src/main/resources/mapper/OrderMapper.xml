@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cn.alasga.order.mapper.OwnOrderMapper">
+<mapper namespace="com.boot.lea.mybot.mapper.OrderMapper">
+
     <resultMap id="BaseResultMap" type="com.boot.lea.mybot.entity.Order">
         <id column="id" property="id"/>
         <result column="order_no" property="orderNo"/>
@@ -39,13 +40,13 @@
     <!--查询即将超时时间-->
     <select id="selectFutureOverTimeOrder" resultMap="BaseResultMap">
         select <include refid="baseField"/>
-        from alsj_own_order aoo
+        from t_order aoo
         where aoo.status = 10
     </select>
 
     <!--更新超时订单 必须是正常且未支付订单-->
     <update id="updateCloseOverTimeOrder">
-        update alsj_own_order aoo
+        update t_order aoo
         set aoo.status=100
         where aoo.id = #{orderId}
           and aoo.status = 10
@@ -53,7 +54,7 @@
 
     <!--用户主动 取消订单-->
     <update id="updateCancelOwnOrder">
-        update alsj_own_order aoo
+        update t_order aoo
         set aoo.status=#{status}
         where aoo.id = #{id}
           and aoo.user_id = #{userId}
@@ -63,7 +64,7 @@
     <!--查询用户列表-->
     <select id="listPageUserOwnOrder" resultMap="BaseResultMap">
         select <include refid="baseField"/>
-        from alsj_own_order aoo
+        from t_order aoo
         where aoo.user_id = #{userId}
         ORDER BY aoo.status ASC, aoo.create_date DESC
     </select>
@@ -71,16 +72,19 @@
     <!--统计用户列表-->
     <select id="countUserOwnOrder" resultType="long">
         select count(*)
-        from alsj_own_order aoo
+        from t_order aoo
         where aoo.user_id = #{userId}
     </select>
 
     <!--支付订单 修改状态 -->
     <update id="updatePayOrder">
-        update alsj_own_order aoo
+        update t_order aoo
         set aoo.status=#{status} ,
             aoo.pay_status=#{payStatus},
             aoo.pay_date=#{payDate}
         where aoo.id = #{id}
     </update>
+    <select id="getAllOrder" resultMap="BaseResultMap">
+
+    </select>
 </mapper>
