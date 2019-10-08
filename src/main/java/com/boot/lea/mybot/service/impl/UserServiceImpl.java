@@ -8,7 +8,6 @@ import com.boot.lea.mybot.service.SendService;
 import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.utils.BeanCopyUtils;
 import com.boot.lea.mybot.vo.UserVO;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -16,17 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-/**
- *如下方式会使@Async失效
- * 一、异步方法使用static修饰
- * 二、异步类没有使用@Component注解（或其他注解）导致spring无法扫描到异步类
- * 三、异步方法不能与异步方法在同一个类中
- * 四、类中需要使用@Autowired或@Resource等注解自动注入，不能自己手动new对象
- * 五、如果使用SpringBoot框架必须在启动类中增加@EnableAsync注解
- * 六、在Async 方法上标注@Transactional是没用的。 在Async 方法调用的方法上标注@Transactional 有效。
- */
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,43 +32,16 @@ public class UserServiceImpl implements UserService {
         BeanCopyUtils.copy(userDTO, user);
         int insert = userMapper.insert(user);
         System.out.println("User 保存用户成功:" + user);
+        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
         sendService.senMsg(user);
         sendService.senEmail(user);
+//        int i = 1 / 0;
         return insert;
-    }
-
-    @Async  @Override  @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void send(User user) {
-        //发短信
-        user.setUsername(Thread.currentThread().getName()+"发短信测试事务...."+ new Random().nextInt());
-        userMapper.insert(user);
-        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
-        //发邮件
-        UserService currentProxy = UserService.class.cast(AopContext.currentProxy());
-        currentProxy.senEmail(user);
-    }
-
-
-
-    @Async  @Override  @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void senMsg(User user) {
-        user.setUsername(Thread.currentThread().getName()+"发短信测试事务...."+ new Random().nextInt());
-        userMapper.insert(user);
-        int i=1/0;
-        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",手机号:" + user.getMobile() + "发送短信成功");
-    }
-
-
-    @Async @Override @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void senEmail(User user) {
-        user.setUsername("发邮件测试事务...."+ new Random().nextInt());
-         userMapper.insert(user);
-        System.out.println(Thread.currentThread().getName() + "给用户id:" + user.getId() + ",邮箱:" + user.getEmail() + "发送邮件成功");
     }
 
     @Override
     public User selectById(Long userId) {
-        return userMapper.selectById(userId);
+        return userMapper.selectById(userId.intValue());
     }
 
     @Override

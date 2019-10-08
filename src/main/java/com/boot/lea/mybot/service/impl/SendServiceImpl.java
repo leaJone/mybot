@@ -3,6 +3,8 @@ package com.boot.lea.mybot.service.impl;
 
 import com.boot.lea.mybot.entity.User;
 import com.boot.lea.mybot.service.SendService;
+import com.boot.lea.mybot.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

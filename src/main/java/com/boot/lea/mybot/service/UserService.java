@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
 
+
     /**
      * 查询用户
      *

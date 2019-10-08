@@ -20,7 +20,7 @@ public interface UserMapper {
      * @param userId
      * @return
      */
-    User selectById(Long userId);
+    User selectById(Integer userId);
 
 
     /**
