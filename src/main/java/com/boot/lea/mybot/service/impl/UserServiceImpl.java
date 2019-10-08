@@ -40,6 +40,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void send(User user) {
+
+    }
+
+    @Override
+    public void senMsg(User user) {
+
+    }
+
+    @Override
+    public void senEmail(User user) {
+
+    }
+
+    @Override
     public User selectById(Long userId) {
         return userMapper.selectById(userId.intValue());
     }
