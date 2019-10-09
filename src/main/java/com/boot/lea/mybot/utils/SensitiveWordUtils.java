@@ -128,6 +128,7 @@ public class SensitiveWordUtils {
         BufferedReader bufferedReader = null;
         try {
             read = new InputStreamReader(SensitiveWordUtils.class.getClassLoader().getResourceAsStream(fileName), encoding);
+
             bufferedReader = new BufferedReader(read);
             for (String txt = null; (txt = bufferedReader.readLine()) != null; ) {
                 if (!arrayList.contains(txt)) {

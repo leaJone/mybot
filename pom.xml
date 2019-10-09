@@ -37,12 +37,12 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-devtools</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-devtools</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--            <optional>true</optional>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -164,6 +164,20 @@
             <version>1.8.10</version>
         </dependency>
 
+
+        <!--mq-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>2.1.4.RELEASE</version>
+        </dependency>
+
+        <!--caffeine缓存-->
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>2.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
