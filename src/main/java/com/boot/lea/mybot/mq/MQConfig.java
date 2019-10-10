@@ -69,16 +69,16 @@ public class MQConfig {
         return factory;
     }
 
-    public static final String LAZY_EXCHANGE = "Ex.LazyExchange";
-    public static final String LAZY_QUEUE = "MQ.LazyQueue";
-    public static final String LAZY_KEY = "lazy.#";
+    public static final String DELAY_EXCHANGE = "Ex.DelayExchange";
+    public static final String DELAY_QUEUE = "MQ.DelayQueue";
+    public static final String DELAY_KEY = "delay.#";
 
     @Bean
-    public TopicExchange lazyExchange() {
+    public TopicExchange delayExchange() {
         Map<String, Object> pros = new HashMap<>();
         //设置交换机支持延迟消息推送
         pros.put("x-delayed-message", "topic");
-        TopicExchange exchange = new TopicExchange(LAZY_EXCHANGE, true, false, pros);
+        TopicExchange exchange = new TopicExchange(DELAY_EXCHANGE, true, false, pros);
         //我们在 Exchange 的声明中可以设置exchange.setDelayed(true)来开启延迟队列，
         // 也可以设置为以下内容传入交换机声明的方法中，因为第一种方式的底层就是通过这种方式来实现的
         exchange.setDelayed(true);
@@ -86,13 +86,13 @@ public class MQConfig {
     }
 
     @Bean
-    public Queue lazyQueue() {
-        return new Queue(LAZY_QUEUE, true);
+    public Queue delayQueue() {
+        return new Queue(DELAY_QUEUE, true);
     }
 
     @Bean
-    public Binding lazyBinding() {
-        return BindingBuilder.bind(lazyQueue()).to(lazyExchange()).with(LAZY_KEY);
+    public Binding delayBinding() {
+        return BindingBuilder.bind(delayQueue()).to(delayExchange()).with(DELAY_KEY);
     }
 
     @Bean

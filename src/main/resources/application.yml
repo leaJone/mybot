@@ -1,7 +1,8 @@
 #端口和路径
 server:
   port: 8080
-  servlet-path: /api
+  servlet:
+    context-path: /api
 
 
 #mybatis 数据源
@@ -29,10 +30,10 @@ spring:
     password: guest
     virtual-host: /
     connection-timeout: 150000
-    publisher-confirms: true #开启确认机制
-    publisher-returns: true #开启return确认机制
-    template:
-      mandatory: true    #设置为 true 后 消费者在消息没有被路由到合适队列情况下会被return监听，而不会自动删除
+    publisher-confirms: true    #开启确认机制 采用消息确认模式,
+    publisher-returns: true     #开启return确认机制
+    template:                   #消息发出去后,异步等待响应
+      mandatory: true           #设置为 true 后,消费者在消息没有被路由到合适队列情况下会被return监听,而不会自动删除
 
 
 

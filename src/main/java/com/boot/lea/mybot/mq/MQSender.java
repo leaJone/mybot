@@ -79,21 +79,22 @@ public class MQSender {
     }
 
     public void sendLazy(Object message) {
+        //采用消息确认模式，消息发出去后，异步等待响应
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setConfirmCallback(confirmCallback);
         rabbitTemplate.setReturnCallback(returnCallback);
         //id + 时间戳 全局唯一
-        CorrelationData correlationData = new CorrelationData("12345678909" + new Date());
-
+        CorrelationData correlationData = new CorrelationData("delay" + System.nanoTime());
         //发送消息时指定 header 延迟时间
-        rabbitTemplate.convertAndSend(MQConfig.LAZY_EXCHANGE, "lazy.boot", message,
+        rabbitTemplate.convertAndSend(MQConfig.DELAY_EXCHANGE, "delay.boot", message,
                 new MessagePostProcessor() {
                     @Override
                     public Message postProcessMessage(Message message) throws AmqpException {
                         //设置消息持久化
                         message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+                        // 两种方式 均可
                         //message.getMessageProperties().setHeader("x-delay", "6000");
-                        message.getMessageProperties().setDelay(60000);
+                        message.getMessageProperties().setDelay(6000);
                         return message;
                     }
                 }, correlationData);
