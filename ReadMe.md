@@ -10,5 +10,18 @@
 测试@Aysnc异步案例和博客
 [Spring异步编程 你的@Async就真的异步吗 ☞ 异步历险奇遇记](https://juejin.im/post/5d47a80a6fb9a06ad3470f9a)
 
+该版本做了MQ的集成和延迟队列
+[实战|我还是很建议你用DelayQueue搞定超时订单的-(1)](https://juejin.im/post/5d822b7a6fb9a06b3260a9e6)
+
+[实战|当然我还是更建议你用MQ搞定超时订单的-(2)](https://juejin.im/post/5d9ed7dee51d4577ff0d9efa)
+
+
+[开发技巧:秀儿,如何才能一个字段表示八个状态啊](https://juejin.im/post/5d861a3ff265da03925a82d8)
 ## 1.1.0
 该版本主要做幂等提交
+
+
+# 项目运行
+1. SpringBoot2.x 执行sql 开启MQ,或者注释掉MQ相关的 即可启动 
+2. 可联系我本人的QQ:769917191
+ 
