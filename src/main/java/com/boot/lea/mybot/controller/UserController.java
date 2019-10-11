@@ -19,6 +19,7 @@ import com.boot.lea.mybot.exception.BizException;
 import com.boot.lea.mybot.futrue.MyFutureTask;
 import com.boot.lea.mybot.service.UserService;
 import com.boot.lea.mybot.vo.UserVO;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,7 @@ public class UserController extends AbstractController {
         if (user == null) {
             return new RspDTO<User>().nonAbsent("用户不存在");
         }
+        Maps.newHashMap();
         return new RspDTO<User>().success(user);
     }
 
