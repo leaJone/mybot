@@ -21,6 +21,11 @@ import java.util.concurrent.TimeUnit;
 @EnableAspectJAutoProxy(exposeProxy = true)
 public class MyBotApplication {
 
+    /**集成了 apiBoot的Swagger
+     * @EnableApiBootSwagger http://localhost:8080/api/swagger-ui.html#/
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(MyBotApplication.class, args);
     }
