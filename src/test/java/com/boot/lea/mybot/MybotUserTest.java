@@ -30,7 +30,7 @@ public class MybotUserTest extends MybotApplicationTests {
     public void sendLazy() throws  Exception {
         String msg = "hello spring boot";
         System.out.println("测试发送消息====>hello spring boot");
-        mqSender.sendLazy(msg + ":");
+        mqSender.sendDelay(msg + ":",6000);
     }
 
 }

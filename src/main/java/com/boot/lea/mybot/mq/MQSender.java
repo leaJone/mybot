@@ -78,7 +78,7 @@ public class MQSender {
         rabbitTemplate.convertAndSend("BOOT-EXCHANGE-1", "boot.save", user, correlationData);
     }
 
-    public void sendLazy(Object message) {
+    public void sendDelay(Object message, int delayTime) {
         //采用消息确认模式，消息发出去后，异步等待响应
         rabbitTemplate.setMandatory(true);
         rabbitTemplate.setConfirmCallback(confirmCallback);
@@ -94,7 +94,7 @@ public class MQSender {
                         message.getMessageProperties().setDeliveryMode(MessageDeliveryMode.PERSISTENT);
                         // 两种方式 均可
                         //message.getMessageProperties().setHeader("x-delay", "6000");
-                        message.getMessageProperties().setDelay(6000);
+                        message.getMessageProperties().setDelay(delayTime);
                         return message;
                     }
                 }, correlationData);

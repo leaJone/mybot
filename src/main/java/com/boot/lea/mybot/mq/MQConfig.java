@@ -73,6 +73,11 @@ public class MQConfig {
     public static final String DELAY_QUEUE = "MQ.DelayQueue";
     public static final String DELAY_KEY = "delay.#";
 
+    /**
+     * 延时交换机
+     *
+     * @return
+     */
     @Bean
     public TopicExchange delayExchange() {
         Map<String, Object> pros = new HashMap<>();
@@ -80,16 +85,25 @@ public class MQConfig {
         pros.put("x-delayed-message", "topic");
         TopicExchange exchange = new TopicExchange(DELAY_EXCHANGE, true, false, pros);
         //我们在 Exchange 的声明中可以设置exchange.setDelayed(true)来开启延迟队列，
-        // 也可以设置为以下内容传入交换机声明的方法中，因为第一种方式的底层就是通过这种方式来实现的
         exchange.setDelayed(true);
         return exchange;
     }
 
+    /**
+     * 延时队列
+     *
+     * @return
+     */
     @Bean
     public Queue delayQueue() {
         return new Queue(DELAY_QUEUE, true);
     }
 
+    /**
+     * 绑定队列和交换机,以及设定路由规则key
+     *
+     * @return
+     */
     @Bean
     public Binding delayBinding() {
         return BindingBuilder.bind(delayQueue()).to(delayExchange()).with(DELAY_KEY);
