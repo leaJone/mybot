@@ -24,4 +24,8 @@
 # 项目运行
 1. SpringBoot2.x 执行sql 开启MQ,或者注释掉MQ相关的 即可启动 
 2. 可联系我本人的QQ:769917191
+
+# 这是我的微信 欢迎交流和学习
+
+![](https://user-gold-cdn.xitu.io/2019/7/22/16c17a58a92ac2cd?w=430&h=430&f=jpeg&s=41002)
  
