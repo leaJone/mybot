@@ -34,7 +34,16 @@ spring:
     publisher-returns: true     #开启return确认机制
     template:                   #消息发出去后,异步等待响应
       mandatory: true           #设置为 true 后,消费者在消息没有被路由到合适队列情况下会被return监听,而不会自动删除
-
+  redis:
+    database: 0
+    host: localhost
+    timeout: 5000
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
 
 
 
