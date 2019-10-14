@@ -18,8 +18,8 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.lang.reflect.Method;
 
 /**
- * @Auther: allen
- * @Date: 2019/3/9 15:09
+ * @Auther: lijing
+ * @Date: 2019/10/14 15:09
  */
 @Configuration
 @EnableCaching

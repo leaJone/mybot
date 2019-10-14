@@ -15,7 +15,7 @@ import java.io.InputStream;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringBootMycatApplicationTests {
+public class SpringBootRedisApplicationTests {
 
 	@Resource
 	private RedisTemplate<String, Object> redisTemplate; //这里使用的是redisTemplate
