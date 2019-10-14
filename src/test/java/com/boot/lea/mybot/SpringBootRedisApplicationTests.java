@@ -31,7 +31,7 @@ public class SpringBootRedisApplicationTests {
 	}
 
 	/**
-	 * 递增存储大的value值，验证1902期 小璟 同学问题
+	 * 递增存储大的value值，验证卢健的大value 900k+问题
 	 */
 	@Test
 	public void redisBigValueTest() throws Exception {
