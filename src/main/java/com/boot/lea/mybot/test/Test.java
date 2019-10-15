@@ -42,10 +42,13 @@ public class Test {
 
         //消费者
         Thread thread2 = new Thread(() -> {
+            StringJoiner joiner;
             while (true) {
                 if (queue.size() >= SIZE) {
-                    StringJoiner joiner = new StringJoiner(":");
-                    queue.forEach(x -> joiner.add(x.toString()));
+                    joiner = new StringJoiner(":");
+                    for (Integer x : queue) {
+                        joiner.add(x.toString());
+                    }
                     System.out.println(joiner);
                     queue.clear();
                 }
