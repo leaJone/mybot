@@ -14,12 +14,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * SpringBoot启动类
+ *
+ * @author lijing
+ * @date 2019年7月
+ */
 @EnableAsync
 @EnableApiBootSwagger
 @SpringBootApplication
 @MapperScan("com.boot.lea.mybot.mapper.**")
 @EnableAspectJAutoProxy(exposeProxy = true)
-public class MyBotApplication {
+public class MyBotApplication{
 
     public static void main(String[] args) {
         SpringApplication.run(MyBotApplication.class, args);
