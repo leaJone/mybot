@@ -8,6 +8,7 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.boot.lea</groupId>
     <artifactId>mybot</artifactId>
     <version>1.0.0</version>
