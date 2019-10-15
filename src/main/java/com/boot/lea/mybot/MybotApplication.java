@@ -1,7 +1,6 @@
 package com.boot.lea.mybot;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import lombok.extern.slf4j.Slf4j;
 import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiBootSwagger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -15,16 +14,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * SpringBoot启动类
+ *
+ * @author lijing
+ */
 @EnableAsync
 @EnableApiBootSwagger
 @SpringBootApplication
 @MapperScan("com.boot.lea.mybot.mapper.**")
 @EnableAspectJAutoProxy(exposeProxy = true)
-@Slf4j
 public class MyBotApplication {
 
     public static void main(String[] args) {
-        log.info("小明你好");
         SpringApplication.run(MyBotApplication.class, args);
     }
 
