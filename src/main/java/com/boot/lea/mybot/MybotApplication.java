@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * SpringBoot启动类
  *
  * @author lijing
+ * @date 2019年7月
  */
 @EnableAsync
 @EnableApiBootSwagger
