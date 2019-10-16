@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.StringJoiner;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class Test {
+public class TestBQ {
 
     private static int SIZE;
 
     @Value("ai.threshold") //这里ai.threshold=10读取配置
     public void setSize(int threshold) {
-        Test.SIZE = threshold;
+        TestBQ.SIZE = threshold;
     }
 
 

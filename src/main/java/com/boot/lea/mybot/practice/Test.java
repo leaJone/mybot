@@ -1,7 +1,7 @@
 package com.boot.lea.mybot.practice;
 
 /**
- * @Title: Test.java
+ * @Title: TestBQ.java
  * @Package com.boot.lea.mybot.practice
  * @Description: TODO(用一句话描述该文件做什么)
  * @author LiJing
@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 
 /**
  * @author LiJing
- * @ClassName: Test
+ * @ClassName: TestBQ
  * @Description: TODO(这里用一句话描述这个类的作用)
  * @date 2019/9/12 10:33
  */

@@ -43,7 +43,7 @@ public class MybotApplicationTests {
         validator = factory.getValidator();
     }
 
-//    @Test
+//    @TestBQ
 //    public void manufacturerIsNull() {
 //        CarDTO car = new CarDTO(null, "DD-AB-123", 4);
 //

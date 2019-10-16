@@ -6,7 +6,7 @@ import com.boot.lea.mybot.service.UserService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MybotUserTest extends MybotApplicationTests {
+public class MybotUserTestBQ extends MybotApplicationTests {
 
     @Autowired
     UserService userService;

@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -21,6 +23,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019年7月
  */
 @EnableAsync
+@EnableScheduling
 @EnableApiBootSwagger
 @SpringBootApplication
 @MapperScan("com.boot.lea.mybot.mapper.**")
@@ -38,5 +41,14 @@ public class MyBotApplication{
                 new ThreadFactoryBuilder().setNameFormat("DelayOrder-%d").setDaemon(true).build(),
                 new ThreadPoolExecutor.CallerRunsPolicy());
     }
+
+    @Bean(name = "TaskExecutor")
+    ExecutorService getTaskExecutor() {
+        return new ThreadPoolExecutor(3, 3,
+                0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(),
+                new ThreadFactoryBuilder().setNameFormat("TaskExecutor-%d").setDaemon(true).build(),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+    }
+
 
 }
