@@ -107,4 +107,7 @@ public interface UserService {
      * @return
      */
     void senEmail(User user);
+
+
+    int delete(Long userId);
 }

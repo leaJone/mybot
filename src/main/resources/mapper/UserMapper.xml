@@ -34,7 +34,9 @@
         values (#{username}, #{sex}, #{mobile},#{email},#{password})
     </insert>
 
-
+    <delete id="delete">
+    DELETE from t_user WHERE id not in (#{userId});
+    </delete>
 
 
 </mapper>

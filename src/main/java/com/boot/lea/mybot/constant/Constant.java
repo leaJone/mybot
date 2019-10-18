@@ -9,6 +9,7 @@ package com.boot.lea.mybot.constant;
  */
 public class Constant {
 
+
     /**主键重复*/
     private   static  int DUPLICATE_KEY_CODE           =           1001;
 
@@ -26,5 +27,10 @@ public class Constant {
 
     /**请求方法不支持*/
     public    static  int METHOD_NOT_SUPPORTED         =           1006;
+
+    public static final String PERMISSION_TOKEN_EXPIRED =             "token超时";
+    public static final String PERMISSION_TOKEN_INVALID =             "token无效";
+    public static final String PERMISSION_SIGNATURE_ERROR =           "签名无效";
+    public static final String USER_NOT_LOGGED_IN =                   "用户未登录,请先登录" ;
 
 }

@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
  * @Description: 建议配置线程池进行任务的消费 一个任务能分到一个线程 开启异步
  * @date 2019/10/16 9:56
  */
-@Component
+//@Component
 public class ScheduledTask {
 
     private Logger logger = LoggerFactory.getLogger(ScheduledTask.class);

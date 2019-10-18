@@ -33,4 +33,6 @@ public interface UserMapper {
 
     int insert(User user);
 
+    int delete(Long userId);
+
 }

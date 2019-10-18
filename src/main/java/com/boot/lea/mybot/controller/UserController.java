@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -155,11 +156,67 @@ public class UserController extends AbstractController {
     @PostMapping("/update/groups")
     public RspDTO update(@RequestBody @Validated(Update.class) UserDTO userDTO) {
         int i = userService.updateById(userDTO);
-        System.out.println("影响行数:"+i);
+        System.out.println("影响行数:" + i);
         if (i > 0) {
             return RspDTO.success();
         }
         return RspDTO.failed();
+    }
+
+
+    /**
+     * 走参数校验注解的 groups 组合校验
+     *
+     * @param userId
+     * @return
+     */
+    @GetMapping("/delete")
+    public RspDTO delete(Long userId) {
+
+        final Thread thread1 = new Thread(() -> {
+            int i = userService.delete(userId);
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+
+        final Thread thread3 = new Thread(() -> {
+            try {
+                final UserVO userVO = new UserVO();
+                userVO.setUsername("hahha");
+                userVO.setCreateTime(new Date());
+                userVO.setMobile("2222");
+                userVO.setSex("难");
+                userVO.setPassword("xssxs");
+                for (int i = 0; i < 200; i++) {
+                    Thread.sleep(100);
+                    userService.save(userVO);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        final Thread thread2 = new Thread(() -> {
+            try {
+                for (int i = 0; i < 200; i++) {
+                    Thread.sleep(100);
+                    userService.delete(userId);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread1.start();
+        thread3.start();
+        thread2.start();
+
+        return RspDTO.success();
     }
 
 

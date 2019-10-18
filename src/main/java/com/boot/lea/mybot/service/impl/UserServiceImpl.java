@@ -144,9 +144,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public int save(UserVO userVO) {
+        User user = new User();
+        user.setSex(userVO.getSex());
+        user.setUsername(userVO.getUsername());
+        user.setPassword(userVO.getPassword());
+        user.setMobile(userVO.getMobile());
+        user.setEmail(userVO.getMobile());
+        userMapper.insert(user);
         System.out.println("userVO 保存用户成功:" + userVO);
         return 1;
+    }
+
+
+    @Override
+    @Transactional
+    public int delete(Long userId) {
+        return userMapper.delete(userId);
     }
 
 
