@@ -12,6 +12,7 @@ package com.boot.lea.mybot.jwt;
 
 import com.boot.lea.mybot.constant.Constant;
 import com.boot.lea.mybot.exception.BizException;
+import com.boot.lea.mybot.utils.Base64Util;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.boot.lea.mybot.jwt;
+package com.boot.lea.mybot.utils;
 
 /**
  * @Title: Base64Util.java
@@ -39,12 +39,10 @@ public class Base64Util {
             if (null == data) {
                 return null;
             }
-
             return new String(Base64.decodeBase64(data.getBytes(charset)), charset);
         } catch (UnsupportedEncodingException e) {
             logger.error(String.format("字符串：%s，解密异常", data), e);
         }
-
         return null;
     }
 
@@ -62,7 +60,6 @@ public class Base64Util {
         } catch (UnsupportedEncodingException e) {
             logger.error(String.format("字符串：%s，加密异常", data), e);
         }
-
         return null;
     }
 }
