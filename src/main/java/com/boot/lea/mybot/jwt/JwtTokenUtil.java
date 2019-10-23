@@ -1,7 +1,7 @@
 package com.boot.lea.mybot.jwt;
 
 /**
- * @Title: JwtTokenUtil.java
+ * @Title: JWTTokenUtil.java
  * @Package com.boot.lea.mybot.jwt
  * @Description: TODO(用一句话描述该文件做什么)
  * @author LiJing
@@ -24,7 +24,7 @@ import java.util.Date;
 
 /**
  * @author LiJing
- * @ClassName: JwtTokenUtil
+ * @ClassName: JWTTokenUtil
  * @Description: TODO(这里用一句话描述这个类的作用)
  * @date 2019/10/18 10:49
  */

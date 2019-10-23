@@ -22,7 +22,7 @@ spring:
   #    default-property-inclusion: non_absent
 
 
-#集成 rabbitmq
+  #集成 rabbitmq
   rabbitmq:
     host: localhost
     port: 5672
@@ -35,7 +35,7 @@ spring:
     template:                   #消息发出去后,异步等待响应
       mandatory: true           #设置为 true 后,消费者在消息没有被路由到合适队列情况下会被return监听,而不会自动删除
 
-#集成redis
+  #集成redis
   redis:
     database: 0
     host: localhost
@@ -46,6 +46,22 @@ spring:
         max-idle: 8
         max-wait: -1
         min-idle: 0
+
+##########SpringSecurity示例实现权限注解+JWT登录认证###############################################################
+jwt:
+  # 密匙KEY
+  secret: JWTSecret
+  # HeaderKEY
+  tokenHeader: Authorization
+  # Token前缀字符
+  tokenPrefix: Sans-
+  # 过期时间 单位秒 1天后过期=86400 7天后过期=604800
+  expiration: 86400
+  # 配置不需要认证的接口
+  antMatchers: /index,/login/**,/favicon.ico
+
+
+##########SpringSecurity示例实现权限注解+JWT登录认证###############################################################
 
 
 ##jwt配置
@@ -71,6 +87,31 @@ logging:
       boot:
         lea:
           mybot: debug
+
+
+
+##########################
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:mapper/*.xml
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    db-config:
+      #主键类型 AUTO:"数据库ID自增" INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #字段策略 IGNORED:"忽略判断"  NOT_NULL:"非 NULL 判断")  NOT_EMPTY:"非空判断"
+      field-strategy: NOT_EMPTY
+      #数据库类型
+      db-type: MYSQL
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 返回map时true:当查询数据为空时字段返回为null,false:不加这个查询数据为空时，字段将被隐藏
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+##########################
+
 
 #    security:
 #      away: jdbc
