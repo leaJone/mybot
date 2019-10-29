@@ -1,4 +1,4 @@
-package com.boot.lea.mybot;
+package com.boot.lea.mybot.wan;
 
 public class TestJoin {
     public static void main(String[] args) {
