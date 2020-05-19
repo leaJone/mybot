@@ -85,8 +85,7 @@ public class DelayOwnOrderImpl implements DelayOrder<Order> {
     @Override
     public boolean addToDelayQueue(Order order) {
         ItemDelayed<Order> orderDelayed = new ItemDelayed<>(order.getId(), order.getCreateDate().getTime());
-        this.addToOrderDelayQueue(orderDelayed);
-        return DELAY_QUEUE.add(orderDelayed);
+        return this.addToOrderDelayQueue(orderDelayed);
     }
 
     /**
